@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app   # 👈 build from app/
+        working-directory: app
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -30,9 +30,13 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: cp dist/index.html dist/404.html
+      - run: |
+          mkdir -p ../site/app
+          cp -R dist/* ../site/app/
+          echo '<meta http-equiv="refresh" content="0; url=/app/">' > ../site/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: app/dist   # 👈 upload build output
+          path: site
   deploy:
     needs: build
     runs-on: ubuntu-latest
