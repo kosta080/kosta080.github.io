@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "./setup-env.sh"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.56.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
