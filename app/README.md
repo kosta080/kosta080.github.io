@@ -148,3 +148,8 @@ Open the browser console to see detailed error messages and API responses.
 - Supabase (PostgreSQL + Real-time)
 - Vite
 - Modern CSS with gradients and animations
+
+
+##Hints
+-cd app
+-npm run dev

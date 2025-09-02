@@ -13,6 +13,7 @@
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  width: 900px;
 }
 
 .App-header h1 {
@@ -75,11 +76,188 @@
   font-weight: 500;
 }
 
+.sliders-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.slider-group label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+.slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+/* Dynamic slider colors with full spectrum interpolation */
+.slider {
+  --slider-hue: 120; /* Default green */
+  --slider-saturation: 70%;
+  --slider-lightness: 50%;
+}
+
+.slider::-webkit-slider-thumb {
+  background: hsl(var(--slider-hue), var(--slider-saturation), var(--slider-lightness));
+  box-shadow: 0 2px 6px hsla(var(--slider-hue), var(--slider-saturation), var(--slider-lightness), 0.4);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 4px 12px hsla(var(--slider-hue), var(--slider-saturation), var(--slider-lightness), 0.6);
+}
+
+.slider::-moz-range-thumb {
+  background: hsl(var(--slider-hue), var(--slider-saturation), var(--slider-lightness));
+  box-shadow: 0 2px 6px hsla(var(--slider-hue), var(--slider-saturation), var(--slider-lightness), 0.4);
+}
+
+.slider::-moz-range-thumb:hover {
+  box-shadow: 0 4px 12px hsla(var(--slider-hue), var(--slider-saturation), var(--slider-lightness), 0.6);
+}
+
+.slider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #ddd;
+  border: none;
+}
+
+.save-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.save-message-container {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.save-btn {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+}
+
+.save-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.save-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.save-error-message {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  margin: 0;
+  font-weight: 500;
+}
+
+.save-success-message {
+  color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  margin: 0;
+  font-weight: 500;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
+  .App {
+    justify-content: stretch;
+    align-items: stretch;
+    padding: 0;
+    min-width: 100vw;
+    width: 100vw;
+  }
+  
   .App-header {
     padding: 2rem;
     margin: 1rem;
+    width: calc(100% - 2rem);
+    max-width: none;
+    border-radius: 0;
   }
   
   .App-header h1 {
@@ -91,6 +269,28 @@
   }
   
   .increment-btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .sliders-container {
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .slider-group {
+    max-width: 250px;
+  }
+  
+  .slider-group label {
+    font-size: 1rem;
+  }
+  
+  .save-container {
+    margin-top: 1.5rem;
+  }
+  
+  .save-btn {
     padding: 0.875rem 1.75rem;
     font-size: 1.1rem;
   }
